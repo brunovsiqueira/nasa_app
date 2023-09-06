@@ -35,6 +35,7 @@ dependencies:
   logging: 1.2.0
   firebase_core: 2.15.1
   firebase_auth: 4.9.0
+  flutter_riverpod: 2.4.0
 
 
   # The following adds the Cupertino Icons font to your application.
