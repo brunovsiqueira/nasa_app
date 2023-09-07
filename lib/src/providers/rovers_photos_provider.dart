@@ -12,7 +12,10 @@ final roversPhotoServiceProvider = Provider<RoversPhotosService>((ref) {
   return RoversPhotosServiceImpl(
     loggerService: ref.read(loggerServiceProvider),
     roversPhotosRemoteDatasource: RoversPhotosRemoteDatasourceImpl(
-        api: ref.read(apiProvider), baseUrl: dotenv.env['NASA_URL']!),
+      api: ref.read(apiProvider),
+      baseUrl: dotenv.env['NASA_URL']!,
+      apiKey: dotenv.env['NASA_API_KEY']!,
+    ),
   );
 });
 

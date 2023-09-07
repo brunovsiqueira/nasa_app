@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:nasa_app/src/datasources/implementations/rovers_photos_remote_datasource_impl.dart';
@@ -15,34 +14,38 @@ class MockAPI extends Mock implements API {}
 
 void main() {
   final mockAPI = MockAPI();
-  const baseUrl = 'https://api.nasa.gov/mars-photos';
+  const baseUrl = 'https://api.nasa.gov';
+  const roverNameEnum = RoverNameEnum.curiosity;
+  final url = '$baseUrl/mars-photos/api/v1/rovers/${roverNameEnum.name}/photos';
+  String apiKey = 'apiKey';
+  final queryParams = {
+    'sol': 1000,
+    'api_key': apiKey,
+  };
 
-  final datasource =
-      RoversPhotosRemoteDatasourceImpl(api: mockAPI, baseUrl: baseUrl);
+  final datasource = RoversPhotosRemoteDatasourceImpl(
+      api: mockAPI, baseUrl: baseUrl, apiKey: apiKey);
 
-  setUp(() async {
-    await dotenv.load(fileName: '../../test/fixtures/.test.env');
-  });
+  final Map<String, dynamic> jsonMap =
+      jsonDecode(fixture('rovers_photos_response.json'));
+
+  final requestOptions = RequestOptions(path: url);
+
+  final successfulResponse =
+      Response(data: jsonMap, requestOptions: requestOptions);
+
+  void setUpSuccessfulAPICall() {
+    when(() => mockAPI.httpGet(
+        url: any(named: 'url'),
+        queryParams: any(named: 'queryParams'))).thenAnswer(
+      (_) async => successfulResponse,
+    );
+  }
 
   group('getRoversPhotos', () {
     test('should perform a GET request on the URL', () async {
       // Arrange
-      const roverNameEnum = RoverNameEnum.curiosity;
-      final url = '$baseUrl/api/v1/rovers/${roverNameEnum.name}/photos';
-      final queryParams = {
-        'sol': 1000,
-        'api_key': 'your_api_key', // Replace with your actual API key
-      };
-      final requestOptions = RequestOptions(path: url);
-
-      when(() => mockAPI.httpGet(
-          url: any(named: 'url'),
-          queryParams: any(named: 'queryParams'))).thenAnswer(
-        (_) async => Response(
-          data: jsonDecode(fixture('rover_photos_response.json')),
-          requestOptions: requestOptions,
-        ),
-      );
+      setUpSuccessfulAPICall();
 
       // Act
       await datasource.getRoversPhotos(roverNameEnum);
@@ -56,16 +59,7 @@ void main() {
         () async {
       // Arrange
       const roverNameEnum = RoverNameEnum.curiosity;
-      final url = '$baseUrl/api/v1/rovers/${roverNameEnum.name}/photos';
-
-      when(() => mockAPI.httpGet(
-          url: any(named: 'url'),
-          queryParams: any(named: 'queryParams'))).thenAnswer(
-        (_) async => Response(
-          data: jsonDecode(fixture('rover_photos_response.json')),
-          requestOptions: RequestOptions(path: url),
-        ),
-      );
+      setUpSuccessfulAPICall();
 
       // Act
       final result = await datasource.getRoversPhotos(roverNameEnum);

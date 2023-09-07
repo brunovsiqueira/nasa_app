@@ -11,7 +11,7 @@ void main() {
     test('should return a valid RoverPhotoItemModel', () {
       // Arrange
       final Map<String, dynamic> jsonMap =
-          jsonDecode(fixture('rover_photo_data.json'));
+          jsonDecode(fixture('rover_photo_item.json'));
 
       final tRoverPhotoItem = RoverPhotoItemModel(
         id: 102693,
