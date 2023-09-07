@@ -12,37 +12,64 @@ class RoversHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<RoverPhotoItemModel>> asyncResponse =
-        ref.watch(roversPhotosProvider(RoverNameEnum.curiosity));
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rovers photos'),
-      ),
-      backgroundColor: const Color.fromARGB(255, 11, 61, 145),
-      body: asyncResponse.when(
-        skipLoadingOnRefresh: false,
-        data: (photoList) {
-          return ListView.builder(
-              itemBuilder: (context, index) {
-                RoverPhotoItemModel item = photoList[index];
-
-                return RoverItemWidget(roverItem: item);
-              },
-              itemCount: photoList.length);
-        },
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Rovers photos'),
+          bottom: TabBar(tabs: [
+            Tab(text: RoverNameEnum.curiosity.displayName),
+            Tab(text: RoverNameEnum.opportunity.displayName),
+            Tab(text: RoverNameEnum.spirit.displayName),
+          ]),
         ),
-        error: (error, stackTrace) {
-          return FailureWidget(
-            failure: error as BaseFailure,
-            refreshCallback: () {
-              ref.invalidate(roversPhotosProvider(RoverNameEnum.curiosity));
-            },
-          );
-        },
+        backgroundColor: const Color.fromARGB(255, 11, 61, 145),
+        body: TabBarView(
+          children: [
+            RoversTab(
+                asyncResponse:
+                    ref.watch(roversPhotosProvider(RoverNameEnum.curiosity))),
+            RoversTab(
+                asyncResponse:
+                    ref.watch(roversPhotosProvider(RoverNameEnum.opportunity))),
+            RoversTab(
+                asyncResponse:
+                    ref.watch(roversPhotosProvider(RoverNameEnum.spirit)))
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class RoversTab extends ConsumerWidget {
+  final AsyncValue<List<RoverPhotoItemModel>> asyncResponse;
+  const RoversTab({super.key, required this.asyncResponse});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return asyncResponse.when(
+      skipLoadingOnRefresh: false,
+      data: (photoList) {
+        return ListView.builder(
+            itemBuilder: (context, index) {
+              RoverPhotoItemModel item = photoList[index];
+
+              return RoverItemWidget(roverItem: item);
+            },
+            itemCount: photoList.length);
+      },
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),
+      error: (error, stackTrace) {
+        return FailureWidget(
+          failure: error as BaseFailure,
+          refreshCallback: () {
+            ref.invalidate(roversPhotosProvider(RoverNameEnum.curiosity));
+          },
+        );
+      },
     );
   }
 }
