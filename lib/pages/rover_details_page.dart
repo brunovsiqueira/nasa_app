@@ -18,8 +18,6 @@ class RoverDetailsPage extends StatelessWidget {
             tag: 'rover_image${item.id}',
             child: CachedNetworkImage(
               imageUrl: item.imgSrc,
-              height: 300,
-              width: double.infinity,
               fit: BoxFit.fill,
               placeholder: (context, url) => const ShimmerWidget(
                 width: 100,
