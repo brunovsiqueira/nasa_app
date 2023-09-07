@@ -1,9 +1,11 @@
+import 'package:nasa_app/enums/rover_status_enum.dart';
+
 class RoverModel {
   final int id;
   final String name;
   final String landingDate;
   final String launchDate;
-  final String status;
+  final RoverStatusEnum status;
 
   RoverModel({
     required this.id,
@@ -19,7 +21,7 @@ class RoverModel {
       name: json['name'],
       landingDate: json['landing_date'],
       launchDate: json['launch_date'],
-      status: json['status'],
+      status: RoverStatusEnum.values.byName(json['status']),
     );
   }
 }

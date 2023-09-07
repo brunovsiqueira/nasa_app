@@ -29,8 +29,13 @@ class RoverItemWidget extends StatelessWidget {
           ),
           subtitle: Padding(
             padding: const EdgeInsets.all(8.0),
-            child:
-                Center(child: Text('Landed: ${roverItem.rover.landingDate}')),
+            child: Row(children: [
+              const Icon(Icons.flight_land),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(roverItem.rover.landingDate),
+              )
+            ]),
           ),
           onTap: () {
             Navigator.of(context)

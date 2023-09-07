@@ -45,25 +45,55 @@ class RoverDetailsPage extends StatelessWidget {
               ],
             ),
           ),
-          // if (venue?.shortDescription != null)
-          //   Padding(
-          //     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          //     child: Text(
-          //       venue!.shortDescription!,
-          //       style: const TextStyle(fontSize: 16),
-          //     ),
-          //   ),
-          // if (venue?.score != null)
-          //   Padding(
-          //     padding: const EdgeInsets.only(top: 28.0, left: 16.0),
-          //     child: Row(children: [
-          //       const Icon(Icons.star),
-          //       Padding(
-          //         padding: const EdgeInsets.only(left: 8.0),
-          //         child: Text('${venue!.score}/10'),
-          //       )
-          //     ]),
-          //   ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'Camera: ${item.cameraName}',
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 28.0, left: 16.0),
+            child: Row(children: [
+              const Icon(Icons.flight_land),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(item.rover.landingDate),
+              )
+            ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 28.0, left: 16.0),
+            child: Row(children: [
+              const Icon(Icons.rocket_launch),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(item.rover.launchDate),
+              )
+            ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 28.0, left: 16.0),
+            child: Row(children: [
+              const Icon(Icons.timer),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(item.rover.launchDate),
+              )
+            ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 28.0, left: 16.0),
+            child: Row(children: [
+              item.rover.status.icon,
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(item.rover.status.description),
+              )
+            ]),
+          ),
           // if (venue?.distance != null)
           //   ListTile(
           //     title: Text(

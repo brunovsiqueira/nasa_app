@@ -19,16 +19,16 @@ class RoversHomePage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Rovers photos'),
       ),
+      backgroundColor: const Color.fromARGB(255, 11, 61, 145),
       body: asyncResponse.when(
         skipLoadingOnRefresh: false,
         data: (photoList) {
-          return ListView.separated(
+          return ListView.builder(
               itemBuilder: (context, index) {
                 RoverPhotoItemModel item = photoList[index];
 
                 return RoverItemWidget(roverItem: item);
               },
-              separatorBuilder: (_, __) => const Divider(height: 0.5),
               itemCount: photoList.length);
         },
         loading: () => const Center(
