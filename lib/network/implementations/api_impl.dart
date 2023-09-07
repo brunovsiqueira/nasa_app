@@ -36,10 +36,10 @@ class APIImpl implements API {
     var result = await connectivityService.isConnected();
 
     ServerException serverException = ServerException(
-        dioException: DioException(requestOptions: RequestOptions(path: path)),
-        message: "Verifique sua conexão e tente novamente!",
-        level: Level.INFO,
-        stackTrace: StackTrace.fromString('APIImpl _checkNetworkConnection'));
+      dioException: DioException(requestOptions: RequestOptions(path: path)),
+      message: "Verifique sua conexão e tente novamente!",
+      level: Level.INFO,
+    );
 
     result.fold((l) {
       throw serverException;
