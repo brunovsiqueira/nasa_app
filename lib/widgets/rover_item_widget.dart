@@ -10,38 +10,34 @@ class RoverItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Hero(
-        tag: 'rover_image${roverItem.id}',
-        child: CachedNetworkImage(
-          imageUrl: roverItem.imgSrc,
-          height: 200,
-          fit: BoxFit.scaleDown,
-          placeholder: (context, url) => const ShimmerWidget(
-            width: 100,
-            height: double.infinity,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        child: ListTile(
+          title: Hero(
+            tag: 'rover_image${roverItem.id}',
+            child: CachedNetworkImage(
+              imageUrl: roverItem.imgSrc,
+              height: 200,
+              fit: BoxFit.fill,
+              placeholder: (context, url) => const ShimmerWidget(
+                width: 100,
+                height: double.infinity,
+              ),
+              errorWidget: (context, url, error) => Container(),
+            ),
           ),
-          errorWidget: (context, url, error) => Container(),
+          subtitle: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child:
+                Center(child: Text('Landed: ${roverItem.rover.landingDate}')),
+          ),
+          onTap: () {
+            Navigator.of(context)
+                .pushNamed(Routes.roversDetails, arguments: roverItem);
+          },
         ),
       ),
-      subtitle: Text('Landed: ${roverItem.rover.landingDate}'),
-      onTap: () {
-        Navigator.of(context)
-            .pushNamed(Routes.roversDetails, arguments: roverItem);
-      },
-      // leading: Hero(
-      //   tag: 'rover_image${roverItem.id}',
-      //   child: CachedNetworkImage(
-      //     imageUrl: roverItem.imgSrc,
-      //     width: 200,
-      //     fit: BoxFit.contain,
-      //     placeholder: (context, url) => const ShimmerWidget(
-      //       width: 100,
-      //       height: double.infinity,
-      //     ),
-      //     errorWidget: (context, url, error) => Container(),
-      //   ),
-      // ),
     );
   }
 }

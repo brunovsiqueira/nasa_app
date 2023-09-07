@@ -22,14 +22,14 @@ class RoversHomePage extends ConsumerWidget {
       body: asyncResponse.when(
         skipLoadingOnRefresh: false,
         data: (photoList) {
-          return ListView.builder(
-            itemCount: photoList.length,
-            itemBuilder: (context, index) {
-              RoverPhotoItemModel item = photoList[index];
+          return ListView.separated(
+              itemBuilder: (context, index) {
+                RoverPhotoItemModel item = photoList[index];
 
-              return RoverItemWidget(roverItem: item);
-            },
-          );
+                return RoverItemWidget(roverItem: item);
+              },
+              separatorBuilder: (_, __) => const Divider(height: 0.5),
+              itemCount: photoList.length);
         },
         loading: () => const Center(
           child: CircularProgressIndicator(),
