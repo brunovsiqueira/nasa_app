@@ -7,7 +7,7 @@ class BaseFailure extends Equatable {
   final dynamic exception;
   final StackTrace stackTrace;
 
-  BaseFailure({
+  const BaseFailure({
     required this.message,
     required this.exception,
     required this.stackTrace,
