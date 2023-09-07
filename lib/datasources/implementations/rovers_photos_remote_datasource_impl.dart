@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nasa_app/datasources/interfaces/rovers_photos_remote_datasource.dart';
 import 'package:nasa_app/errors/exceptions/rovers_photos_exceptions.dart';
-import 'package:nasa_app/models/photo_model.dart';
+import 'package:nasa_app/models/rover_item_model.dart';
 import 'package:nasa_app/network/interfaces/api.dart';
 
 class RoversPhotosRemoteDatasourceImpl implements RoversPhotosRemoteDatasource {
@@ -15,7 +15,7 @@ class RoversPhotosRemoteDatasourceImpl implements RoversPhotosRemoteDatasource {
   });
 
   @override
-  Future<List<PhotoModel>> getRoversPhotos() async {
+  Future<List<RoverItemModel>> getRoversPhotos() async {
     final String url = '$baseUrl/mars-photos/api/v1/rovers/curiosity/photos';
     try {
       Response response = await api.httpGet(url: url, queryParams: {
@@ -23,7 +23,7 @@ class RoversPhotosRemoteDatasourceImpl implements RoversPhotosRemoteDatasource {
         'api_key': dotenv.env['API_KEY']!,
       });
       return (response.data as List)
-          .map((e) => PhotoModel.fromJson(e))
+          .map((e) => RoverItemModel.fromJson(e))
           .toList();
     } on DioException catch (e) {
       throw GetRoversPhotosException(dioException: e);

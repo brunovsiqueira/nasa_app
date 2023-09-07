@@ -1,5 +1,5 @@
-import 'package:nasa_app/models/photo_model.dart';
+import 'package:nasa_app/models/rover_item_model.dart';
 
 abstract interface class RoversPhotosRemoteDatasource {
-  Future<List<PhotoModel>> getRoversPhotos();
+  Future<List<RoverItemModel>> getRoversPhotos();
 }
