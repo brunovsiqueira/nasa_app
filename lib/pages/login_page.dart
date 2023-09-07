@@ -16,6 +16,7 @@ class LoginPage extends ConsumerWidget {
         title: const Text('Login to Nasa App'),
       ),
       body: asyncResponse.when(
+        skipLoadingOnRefresh: false,
         data: (_) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             Navigator.of(context).pushNamed(Routes.roversHome);
