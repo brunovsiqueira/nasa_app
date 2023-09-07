@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nasa_app/errors/failures/base_failure.dart';
 import 'package:nasa_app/providers/authentication_providers.dart';
 import 'package:nasa_app/routes.dart';
-import 'package:nasa_app/widgets/error_widget.dart';
+import 'package:nasa_app/widgets/failure_widget.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});

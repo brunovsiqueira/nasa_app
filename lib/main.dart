@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nasa_app/pages/login_page.dart';
+import 'package:nasa_app/pages/rover_details_page.dart';
 import 'package:nasa_app/pages/rovers_home_page.dart';
 import 'package:nasa_app/routes.dart';
 import 'firebase_options.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
       home: const LoginPage(),
       routes: {
         Routes.roversHome: (context) => const RoversHomePage(),
-        //Routes.roversDetails: (context) => const RestaurantDetailsPage()
+        Routes.roversDetails: (context) => const RoverDetailsPage()
       },
     );
   }
