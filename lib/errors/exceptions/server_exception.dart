@@ -1,17 +1,18 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:dio/dio.dart';
+import 'package:equatable/equatable.dart';
 import 'package:logging/logging.dart';
-import 'package:nasa_app/errors/exceptions/base_exception.dart';
 
-class ServerException extends BaseException {
+class ServerException extends Equatable implements Exception {
   final DioException dioException;
+  String? message;
+  Level? level;
 
   ServerException({
     required this.dioException,
-    required super.stackTrace,
-    required super.message,
-    super.level,
+    this.message,
+    this.level,
   }) {
     if (dioException
         case DioException(response: Response(statusCode: int statusCode))
@@ -23,5 +24,5 @@ class ServerException extends BaseException {
   }
 
   @override
-  List<Object?> get props => [message, stackTrace, level, dioException];
+  List<Object?> get props => [message, level, dioException];
 }

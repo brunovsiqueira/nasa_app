@@ -7,6 +7,7 @@ import 'package:nasa_app/pages/login_page.dart';
 import 'package:nasa_app/pages/rovers_home_page.dart';
 import 'package:nasa_app/routes.dart';
 import 'firebase_options.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   runZonedGuarded(() async {
@@ -14,6 +15,9 @@ Future<void> main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    await dotenv.load(
+        fileName:
+            "lib/config/env/.${const String.fromEnvironment('env', defaultValue: 'prod')}.env");
     runApp(const ProviderScope(child: MyApp()));
   }, (error, stack) {
     //TODO: log with crashlytics
