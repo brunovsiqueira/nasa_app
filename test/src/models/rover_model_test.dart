@@ -9,8 +9,7 @@ void main() {
   group('RoverModel.fromJson', () {
     test('should return a valid RoverModel', () {
       // Arrange
-      final Map<String, dynamic> jsonMap =
-          jsonDecode(fixture('rover_data.json'));
+      final Map<String, dynamic> jsonMap = jsonDecode(fixture('rover.json'));
 
       final tRover = RoverModel(
         id: 5,

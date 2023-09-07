@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:nasa_app/src/models/rover_model.dart';
 
-class RoverPhotoItemModel {
+class RoverPhotoItemModel extends Equatable {
   final int id;
   final int sol;
   final String imgSrc;
@@ -8,7 +9,7 @@ class RoverPhotoItemModel {
   final String cameraName;
   final RoverModel rover;
 
-  RoverPhotoItemModel({
+  const RoverPhotoItemModel({
     required this.id,
     required this.sol,
     required this.imgSrc,
@@ -27,4 +28,14 @@ class RoverPhotoItemModel {
       rover: RoverModel.fromJson(json['rover']),
     );
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        sol,
+        imgSrc,
+        earthDate,
+        cameraName,
+        rover,
+      ];
 }

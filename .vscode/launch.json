@@ -7,7 +7,7 @@
         {
             "name": "[DEV] nasa_app (debug mode)",
             "request": "launch",
-            "program": "lib/main.dart",
+            "program": "lib/src/main.dart",
             "flutterMode": "debug",
             "type": "dart",
             "args": [

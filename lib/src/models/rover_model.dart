@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:nasa_app/src/enums/rover_status_enum.dart';
 
-class RoverModel {
+class RoverModel extends Equatable {
   final int id;
   final String name;
   final String landingDate;
@@ -24,4 +25,12 @@ class RoverModel {
       status: RoverStatusEnum.values.byName(json['status']),
     );
   }
+
+  @override
+  List<Object?> get props => [
+        name,
+        landingDate,
+        launchDate,
+        status,
+      ];
 }
