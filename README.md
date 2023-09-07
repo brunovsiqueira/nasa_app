@@ -16,4 +16,7 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 Add two configuration files: .dev.env and .prod.env into /config/env with the following content: 
-```NASA_URL=https://api.nasa.gov```
+```
+NASA_URL=https://api.nasa.gov`
+NASA_API_KEY=your_api_key
+``

@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:nasa_app/models/rover_item_model.dart';
+import 'package:nasa_app/models/rover_photo_item_model.dart';
 import 'package:nasa_app/routes.dart';
 import 'package:nasa_app/widgets/shimmer_widget.dart';
 
 class RoverItemWidget extends StatelessWidget {
-  final RoverItemModel roverItem;
+  final RoverPhotoItemModel roverItem;
   const RoverItemWidget({super.key, required this.roverItem});
 
   @override

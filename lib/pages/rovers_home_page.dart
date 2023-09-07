@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nasa_app/errors/failures/base_failure.dart';
-import 'package:nasa_app/models/rover_item_model.dart';
+import 'package:nasa_app/models/rover_photo_item_model.dart';
 import 'package:nasa_app/providers/rovers_photos_provider.dart';
 import 'package:nasa_app/widgets/failure_widget.dart';
 import 'package:nasa_app/widgets/rover_item_widget.dart';
@@ -11,7 +11,7 @@ class RoversHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<RoverItemModel>> asyncResponse =
+    AsyncValue<List<RoverPhotoItemModel>> asyncResponse =
         ref.watch(roversPhotosProvider);
 
     return Scaffold(
@@ -24,7 +24,7 @@ class RoversHomePage extends ConsumerWidget {
           return ListView.builder(
             itemCount: photoList.length,
             itemBuilder: (context, index) {
-              RoverItemModel item = photoList[index];
+              RoverPhotoItemModel item = photoList[index];
 
               return RoverItemWidget(roverItem: item);
             },

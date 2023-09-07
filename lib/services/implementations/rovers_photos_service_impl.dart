@@ -4,7 +4,7 @@ import 'package:nasa_app/errors/exceptions/rovers_photos_exceptions.dart';
 import 'package:nasa_app/errors/failures/base_failure.dart';
 import 'package:nasa_app/errors/failures/rovers_photos_failures.dart';
 import 'package:nasa_app/errors/failures/unknown_failure.dart';
-import 'package:nasa_app/models/rover_item_model.dart';
+import 'package:nasa_app/models/rover_photo_item_model.dart';
 import 'package:nasa_app/services/interfaces/logger_service.dart';
 import 'package:nasa_app/services/interfaces/rovers_photos_service.dart';
 
@@ -18,7 +18,8 @@ class RoversPhotosServiceImpl implements RoversPhotosService {
   });
 
   @override
-  Future<Either<BaseFailure, List<RoverItemModel>>> getRoversPhotos() async {
+  Future<Either<BaseFailure, List<RoverPhotoItemModel>>>
+      getRoversPhotos() async {
     BaseFailure? failure;
     try {
       var result = await roversPhotosRemoteDatasource.getRoversPhotos();

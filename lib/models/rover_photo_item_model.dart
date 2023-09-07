@@ -1,6 +1,6 @@
 import 'package:nasa_app/models/rover_model.dart';
 
-class RoverItemModel {
+class RoverPhotoItemModel {
   final int id;
   final int sol;
   final String imgSrc;
@@ -8,7 +8,7 @@ class RoverItemModel {
   final String cameraName;
   final RoverModel rover;
 
-  RoverItemModel({
+  RoverPhotoItemModel({
     required this.id,
     required this.sol,
     required this.imgSrc,
@@ -17,8 +17,8 @@ class RoverItemModel {
     required this.rover,
   });
 
-  factory RoverItemModel.fromJson(Map<String, dynamic> json) {
-    return RoverItemModel(
+  factory RoverPhotoItemModel.fromJson(Map<String, dynamic> json) {
+    return RoverPhotoItemModel(
       id: json['id'],
       sol: json['sol'],
       imgSrc: json['img_src'],

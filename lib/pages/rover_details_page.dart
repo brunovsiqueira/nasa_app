@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:nasa_app/models/rover_item_model.dart';
+import 'package:nasa_app/models/rover_photo_item_model.dart';
 import 'package:nasa_app/widgets/shimmer_widget.dart';
 
 class RoverDetailsPage extends StatelessWidget {
@@ -8,7 +8,8 @@ class RoverDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final item = ModalRoute.of(context)!.settings.arguments as RoverItemModel;
+    final item =
+        ModalRoute.of(context)!.settings.arguments as RoverPhotoItemModel;
     return Scaffold(
       appBar: AppBar(),
       body: Column(
