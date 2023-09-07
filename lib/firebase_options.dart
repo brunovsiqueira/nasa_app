@@ -4,16 +4,6 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -66,7 +56,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '484473872047',
     projectId: 'nasa-app-1619',
     storageBucket: 'nasa-app-1619.appspot.com',
-    iosClientId: '484473872047-4do0jhk6fhphnlo3kpjaabl2if8rgls5.apps.googleusercontent.com',
+    iosClientId:
+        '484473872047-4do0jhk6fhphnlo3kpjaabl2if8rgls5.apps.googleusercontent.com',
     iosBundleId: 'com.example.nasaApp',
   );
 
@@ -76,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '484473872047',
     projectId: 'nasa-app-1619',
     storageBucket: 'nasa-app-1619.appspot.com',
-    iosClientId: '484473872047-97utkit8nquppjfrr6kfg4v48lmg2tgo.apps.googleusercontent.com',
+    iosClientId:
+        '484473872047-97utkit8nquppjfrr6kfg4v48lmg2tgo.apps.googleusercontent.com',
     iosBundleId: 'com.example.nasaApp.RunnerTests',
   );
 }
