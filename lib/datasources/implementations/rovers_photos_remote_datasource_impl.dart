@@ -20,7 +20,7 @@ class RoversPhotosRemoteDatasourceImpl implements RoversPhotosRemoteDatasource {
     try {
       Response response = await api.httpGet(url: url, queryParams: {
         'sol': 1000,
-        'api_key': dotenv.env['API_KEY']!,
+        'api_key': dotenv.env['NASA_API_KEY']!,
       });
       return (response.data as List)
           .map((e) => RoverItemModel.fromJson(e))
