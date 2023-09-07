@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "[DEV] nasa_app (debug mode)",
+            "request": "launch",
+            "program": "lib/src/main.dart",
+            "flutterMode": "debug",
+            "type": "dart",
+            "args": [
+                "--dart-define=env=dev"
+            ]
+        },
+        {
+            "name": "[DEV] nasa_app (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--dart-define=env=dev"
+            ]
+        },
+        {
+            "name": "[DEV] nasa_app (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--dart-define=env=dev"
+            ]
+        },
+        {
+            "name": "[PROD] nasa_app (debug mode)",
+            "request": "launch",
+            "flutterMode": "debug",
+            "type": "dart",
+            "args": [
+                "--dart-define=env=prod"
+            ]
+        },
+        {
+            "name": "[PROD] nasa_app (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--dart-define=env=prod"
+            ]
+        },
+        {
+            "name": "[PROD] nasa_app (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--dart-define=env=prod"
+            ]
+        }
+    ]
+}
