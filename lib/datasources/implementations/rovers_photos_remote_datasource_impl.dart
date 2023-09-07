@@ -19,7 +19,7 @@ class RoversPhotosRemoteDatasourceImpl implements RoversPhotosRemoteDatasource {
   Future<List<RoverPhotoItemModel>> getRoversPhotos(
       RoverNameEnum roverNameEnum) async {
     final String url =
-        '$baseUrl/mars-photos/api/v1/rovers/$roverNameEnum/photos';
+        '$baseUrl/mars-photos/api/v1/rovers/${roverNameEnum.name}/photos';
     try {
       Response response = await api.httpGet(url: url, queryParams: {
         'sol': 1000,

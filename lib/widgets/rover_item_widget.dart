@@ -11,18 +11,12 @@ class RoverItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(roverItem.rover.name),
-      subtitle: Text('Landed: ${roverItem.rover.landingDate}'),
-      onTap: () {
-        Navigator.of(context)
-            .pushNamed(Routes.roversDetails, arguments: roverItem);
-      },
-      leading: Hero(
+      title: Hero(
         tag: 'rover_image${roverItem.id}',
         child: CachedNetworkImage(
           imageUrl: roverItem.imgSrc,
-          width: 100,
-          fit: BoxFit.fill,
+          height: 200,
+          fit: BoxFit.scaleDown,
           placeholder: (context, url) => const ShimmerWidget(
             width: 100,
             height: double.infinity,
@@ -30,6 +24,24 @@ class RoverItemWidget extends StatelessWidget {
           errorWidget: (context, url, error) => Container(),
         ),
       ),
+      subtitle: Text('Landed: ${roverItem.rover.landingDate}'),
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(Routes.roversDetails, arguments: roverItem);
+      },
+      // leading: Hero(
+      //   tag: 'rover_image${roverItem.id}',
+      //   child: CachedNetworkImage(
+      //     imageUrl: roverItem.imgSrc,
+      //     width: 200,
+      //     fit: BoxFit.contain,
+      //     placeholder: (context, url) => const ShimmerWidget(
+      //       width: 100,
+      //       height: double.infinity,
+      //     ),
+      //     errorWidget: (context, url, error) => Container(),
+      //   ),
+      // ),
     );
   }
 }
