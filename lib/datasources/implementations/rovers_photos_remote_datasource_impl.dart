@@ -20,7 +20,7 @@ class RoversPhotosRemoteDatasourceImpl implements RoversPhotosRemoteDatasource {
     try {
       Response response = await api.httpGet(url: url, queryParams: {
         'sol': 1000,
-        'api_key': dotenv.env['RESTAURANTS_API_URL']!,
+        'api_key': dotenv.env['API_KEY']!,
       });
       return (response.data as List)
           .map((e) => PhotoModel.fromJson(e))
