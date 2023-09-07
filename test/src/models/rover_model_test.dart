@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nasa_app/src/enums/rover_status_enum.dart';
 import 'package:nasa_app/src/models/rover_model.dart';
 
-import '../../fixtures/fixture_reader.dart'; // Make sure to import the RoverModel class.
+import '../../fixtures/fixture_reader.dart';
 
 void main() {
   group('RoverModel.fromJson', () {
