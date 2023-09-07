@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nasa_app/enums/rover_name_enum.dart';
 import 'package:nasa_app/errors/failures/base_failure.dart';
 import 'package:nasa_app/models/rover_photo_item_model.dart';
 import 'package:nasa_app/providers/rovers_photos_provider.dart';
@@ -12,11 +13,11 @@ class RoversHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AsyncValue<List<RoverPhotoItemModel>> asyncResponse =
-        ref.watch(roversPhotosProvider);
+        ref.watch(roversPhotosProvider(RoverNameEnum.curiosity));
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Venues in Helsinki'),
+        title: const Text('Rovers photos'),
       ),
       body: asyncResponse.when(
         skipLoadingOnRefresh: false,
@@ -37,7 +38,7 @@ class RoversHomePage extends ConsumerWidget {
           return FailureWidget(
             failure: error as BaseFailure,
             refreshCallback: () {
-              ref.invalidate(roversPhotosProvider);
+              ref.invalidate(roversPhotosProvider(RoverNameEnum.curiosity));
             },
           );
         },

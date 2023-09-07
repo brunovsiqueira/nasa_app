@@ -12,10 +12,11 @@ final firebaseAuthenticationServiceProvider =
 final signInFutureProvider = FutureProvider.autoDispose<bool>((ref) async {
   var result =
       await ref.read(firebaseAuthenticationServiceProvider).anonymousSignIn();
+  bool success = false;
   result.fold((failure) {
     throw failure;
   }, (_) {
-    return true;
+    success = true;
   });
-  return false;
+  return success;
 });
