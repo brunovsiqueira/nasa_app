@@ -1,26 +1,34 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nasa_app/providers/firebase_authentication_service_provider.dart';
+import 'package:nasa_app/errors/failures/base_failure.dart';
+import 'package:nasa_app/providers/authentication_providers.dart';
+import 'package:nasa_app/routes.dart';
+import 'package:nasa_app/widgets/error_widget.dart';
 
-class LoginPage extends ConsumerStatefulWidget {
+class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends ConsumerState<LoginPage> {
-  @override
-  void initState() {
-    super.initState();
-
-    ref
-        .read(firebaseAuthenticationServiceProvider)
-        .anonymousSignIn(); //TODO: handle signin
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
+  Widget build(BuildContext context, WidgetRef ref) {
+    AsyncValue<bool> asyncResponse = ref.watch(signInFutureProvider);
+    return Scaffold(
+      body: asyncResponse.when(
+        data: (_) {
+          Navigator.of(context).pushNamed(Routes.roversHome);
+          return Container();
+        },
+        error: (error, _) {
+          return FailureWidget(
+            failure: error as BaseFailure,
+            refreshCallback: () {
+              ref.invalidate(signInFutureProvider);
+            },
+          );
+        },
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
+    );
   }
 }

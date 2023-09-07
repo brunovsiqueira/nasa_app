@@ -12,11 +12,11 @@ class FirebaseAuthenticationServiceImpl
   FirebaseAuthenticationServiceImpl(this._loggerService);
 
   @override
-  Future<Either<BaseFailure, UserCredential>> anonymousSignIn() async {
+  Future<Either<BaseFailure, Unit>> anonymousSignIn() async {
     BaseFailure? failure;
     try {
-      final userCredential = await FirebaseAuth.instance.signInAnonymously();
-      return Right(userCredential);
+      await FirebaseAuth.instance.signInAnonymously();
+      return const Right(unit);
     } on FirebaseAuthException catch (e, stackTrace) {
       switch (e.code) {
         case "operation-not-allowed":

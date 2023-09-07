@@ -8,3 +8,14 @@ final firebaseAuthenticationServiceProvider =
     Provider<FirebaseAuthenticationService>((ref) {
   return FirebaseAuthenticationServiceImpl(ref.read(loggerServiceProvider));
 });
+
+final signInFutureProvider = FutureProvider.autoDispose<bool>((ref) async {
+  var result =
+      await ref.read(firebaseAuthenticationServiceProvider).anonymousSignIn();
+  result.fold((failure) {
+    throw failure;
+  }, (_) {
+    return true;
+  });
+  return false;
+});
