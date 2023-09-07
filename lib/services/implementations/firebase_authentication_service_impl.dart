@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nasa_app/errors/failures/authentication_failures.dart';
 import 'package:nasa_app/errors/failures/base_failure.dart';
+import 'package:nasa_app/errors/failures/unknown_failure.dart';
 import 'package:nasa_app/services/interfaces/firebase_authentication_service.dart';
 import 'package:nasa_app/services/interfaces/logger_service.dart';
 
@@ -32,7 +33,7 @@ class FirebaseAuthenticationServiceImpl
           );
       }
     } catch (e, stackTrace) {
-      failure = FirebaseAnonymousSignInUnknownFailure(
+      failure = UnknownFailure(
         exception: e,
         stackTrace: stackTrace,
       );
