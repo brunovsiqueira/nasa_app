@@ -9,8 +9,8 @@ class BaseFailure extends Equatable {
 
   const BaseFailure({
     required this.message,
-    required this.exception,
-    required this.stackTrace,
+    this.exception,
+    this.stackTrace = StackTrace.empty,
     this.level = Level.FINE,
   });
 

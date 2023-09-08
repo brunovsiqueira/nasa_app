@@ -1,9 +1,11 @@
-import 'package:nasa_app/src/errors/failures/base_failure.dart';
+import 'package:logging/logging.dart';
+import 'package:nasa_app/src/errors/failures/server_failure.dart';
 
-class GetRoversPhotosFailure extends BaseFailure {
+class GetRoversPhotosFailure extends ServerFailure {
   const GetRoversPhotosFailure({
     super.message = 'Error getting rovers photos. Try again later.',
     required super.exception,
-    required super.stackTrace,
+    super.level = Level.SEVERE,
+    super.stackTrace,
   });
 }

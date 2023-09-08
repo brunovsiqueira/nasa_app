@@ -18,7 +18,8 @@ class RoversPhotosRemoteDatasourceImpl implements RoversPhotosRemoteDatasource {
 
   @override
   Future<List<RoverPhotoItemModel>> getRoversPhotos(
-      RoverNameEnum roverNameEnum) async {
+    RoverNameEnum roverNameEnum,
+  ) async {
     final String url =
         '$baseUrl/mars-photos/api/v1/rovers/${roverNameEnum.name}/photos';
     try {
