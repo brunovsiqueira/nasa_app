@@ -3,11 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nasa_app/src/errors/failures/authentication_failures.dart';
 import 'package:nasa_app/src/errors/failures/base_failure.dart';
 import 'package:nasa_app/src/errors/failures/unknown_failure.dart';
-import 'package:nasa_app/src/services/interfaces/firebase_authentication_service.dart';
+import 'package:nasa_app/src/services/interfaces/authentication_service.dart';
 import 'package:nasa_app/src/services/interfaces/logger_service.dart';
 
-class FirebaseAuthenticationServiceImpl
-    implements FirebaseAuthenticationService {
+class FirebaseAuthenticationServiceImpl implements AuthenticationService {
   final LoggerService _loggerService;
 
   FirebaseAuthenticationServiceImpl(this._loggerService);

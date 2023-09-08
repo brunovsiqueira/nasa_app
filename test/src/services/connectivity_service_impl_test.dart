@@ -17,7 +17,7 @@ void main() {
       ConnectivityServiceImpl(mockLoggerService, mockConnectionChecker);
 
   setUpAll(() {
-    registerFallbackValue(BaseFailure(message: 'failure'));
+    registerFallbackValue(const BaseFailure(message: 'failure'));
   });
 
   setUp(() {

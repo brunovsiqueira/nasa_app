@@ -9,6 +9,7 @@ import 'package:nasa_app/src/enums/rover_name_enum.dart';
 import 'package:nasa_app/src/errors/exceptions/rovers_photos_exceptions.dart';
 import 'package:nasa_app/src/errors/failures/base_failure.dart';
 import 'package:nasa_app/src/errors/failures/rovers_photos_failures.dart';
+import 'package:nasa_app/src/errors/failures/server_failure.dart';
 import 'package:nasa_app/src/errors/failures/unknown_failure.dart';
 import 'package:nasa_app/src/models/rover_photo_item_model.dart';
 import 'package:nasa_app/src/services/implementations/rovers_photos_service_impl.dart';
@@ -32,7 +33,7 @@ void main() {
       DioException(requestOptions: RequestOptions(baseUrl: ''));
 
   setUpAll(() {
-    registerFallbackValue(BaseFailureFake);
+    registerFallbackValue(const ServerFailure(message: 'failure'));
     registerFallbackValue(tRoverName);
   });
 
@@ -47,8 +48,9 @@ void main() {
 
   group('getRoversPhotos', () {
     final List<RoverPhotoItemModel> tRoverPhotos =
-        jsonDecode(fixture('rovers_photos_response.json'))['photos']
-            .map((model) => RoverPhotoItemModel.fromJson(model));
+        (jsonDecode(fixture('rovers_photos_response.json'))['photos'] as List)
+            .map((model) => RoverPhotoItemModel.fromJson(model))
+            .toList();
 
     test('should call RoversPhotosRemoteDatasource.getRoversPhotos once',
         () async {

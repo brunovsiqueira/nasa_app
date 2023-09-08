@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nasa_app/src/services/implementations/firebase_authentication_service_impl.dart';
-import 'package:nasa_app/src/services/interfaces/firebase_authentication_service.dart';
+import 'package:nasa_app/src/services/interfaces/authentication_service.dart';
 
 import 'logger_service_provider.dart';
 
 final firebaseAuthenticationServiceProvider =
-    Provider<FirebaseAuthenticationService>((ref) {
+    Provider<AuthenticationService>((ref) {
   return FirebaseAuthenticationServiceImpl(ref.read(loggerServiceProvider));
 });
 
