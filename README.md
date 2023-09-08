@@ -50,15 +50,9 @@ Key Riverpod providers used in the app:
 
 To run the app, follow these steps:
 
-1. Clone this repository to your local machine:
-
-git clone https://github.com/your-username/nasa-photo-viewer.git
-
-
+1. Clone this repository to your local machine
 
 2. Navigate to the project directory:
-
-cd nasa-photo-viewer
 
 3. Create a `.env` file in the root directory and add your NASA API key and the Nasa API path:
 
