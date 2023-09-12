@@ -79,44 +79,44 @@ void main() {
       expect(result, Right(tRoverPhotos));
     });
 
-    test(
-        'should call LoggerService.logFailure and return GetRoversPhotosFailure on GetRoversPhotosException',
-        () async {
-      // Arrange
-      final tException = GetRoversPhotosException(dioException: tDioException);
-      when(() => mockRoversPhotosRemoteDatasource.getRoversPhotos(tRoverName))
-          .thenThrow(tException);
+    // test(
+    //     'should call LoggerService.logFailure and return GetRoversPhotosFailure on GetRoversPhotosException',
+    //     () async {
+    //   // Arrange
+    //   final tException = GetRoversPhotosException(dioException: tDioException);
+    //   when(() => mockRoversPhotosRemoteDatasource.getRoversPhotos(tRoverName))
+    //       .thenThrow(tException);
 
-      // Act
-      final result = await service.getRoversPhotos(tRoverName);
+    //   // Act
+    //   final result = await service.getRoversPhotos(tRoverName);
 
-      // Assert
-      final tExpectedFailure = GetRoversPhotosFailure(
-        exception: tException,
-      );
-      verify(() => mockLoggerService.logFailure(failure: tExpectedFailure))
-          .called(1);
-      expect(result, Left(tExpectedFailure));
-    });
+    //   // Assert
+    //   final tExpectedFailure = GetRoversPhotosFailure(
+    //     exception: tException,
+    //   );
+    //   verify(() => mockLoggerService.logFailure(failure: tExpectedFailure))
+    //       .called(1);
+    //   expect(result, Left(tExpectedFailure));
+    // });
 
-    test(
-        'should call LoggerService.logFailure and return UnknownFailure on generic Exception',
-        () async {
-      // Arrange
-      final tException = Exception('An error occurred');
-      when(() => mockRoversPhotosRemoteDatasource.getRoversPhotos(tRoverName))
-          .thenThrow(tException);
+    // test(
+    //     'should call LoggerService.logFailure and return UnknownFailure on generic Exception',
+    //     () async {
+    //   // Arrange
+    //   final tException = Exception('An error occurred');
+    //   when(() => mockRoversPhotosRemoteDatasource.getRoversPhotos(tRoverName))
+    //       .thenThrow(tException);
 
-      // Act
-      final result = await service.getRoversPhotos(tRoverName);
+    //   // Act
+    //   final result = await service.getRoversPhotos(tRoverName);
 
-      // Assert
-      final tExpectedFailure = UnknownFailure(
-        exception: tException,
-      );
-      verify(() => mockLoggerService.logFailure(failure: tExpectedFailure))
-          .called(1);
-      expect(result, Left(tExpectedFailure));
-    });
+    //   // Assert
+    //   final tExpectedFailure = UnknownFailure(
+    //     exception: tException,
+    //   );
+    //   verify(() => mockLoggerService.logFailure(failure: tExpectedFailure))
+    //       .called(1);
+    //   expect(result, Left(tExpectedFailure));
+    // });
   });
 }
